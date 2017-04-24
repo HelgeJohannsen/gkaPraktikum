@@ -70,14 +70,14 @@ public class Dijkstra2 {
 	}
 
 	private Node nodeFromQ() {
-		double lowest = Double.MAX_VALUE;
+		int lowest = Integer.MAX_VALUE;
 		LinkedList<Node> queue2 = (LinkedList<Node>) queue.clone();
 		Node lowestNode = null;
 		int index = 0, counter = 0;
 
 		while (!queue2.isEmpty()) {
 			Node node = (Node) queue2.remove();
-			double i1 = (double) node.getNumber("distance");
+			int i1 = (int) node.getNumber("distance");
 			if (i1 < lowest) {
 				lowest = i1;
 				lowestNode = node;
@@ -106,10 +106,10 @@ public class Dijkstra2 {
 
 					 graphicController.colorEdge(edge, "red");
 					 graphicController.colorNode(node, "red");
-					double sEdgeDistance = (edge.getAttribute("weight"));
-					double distanceSource = sourceNode.getNumber("distance");
-					double distanceNode = node.getNumber("distance");
-					double edgeDistance = (sEdgeDistance);
+					int sEdgeDistance = (edge.getAttribute("weight"));
+					int distanceSource = (int) sourceNode.getNumber("distance");
+					int distanceNode = (int) node.getNumber("distance");
+					int edgeDistance = (sEdgeDistance);
 
 					if ((distanceSource + edgeDistance) < distanceNode) {
 						node.addAttribute("distance", (distanceSource + edgeDistance));
