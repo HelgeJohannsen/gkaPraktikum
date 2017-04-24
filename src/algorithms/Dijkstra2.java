@@ -10,6 +10,7 @@ import org.graphstream.graph.Node;
 
 import application.graphicController;
 
+//Helge Timo
 public class Dijkstra2 {
 	private Graph graph;
 	private Node source;
