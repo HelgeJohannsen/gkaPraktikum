@@ -67,7 +67,7 @@ public class Prim {
 				graphicController.colorEdge(edge, "red");
 			}
 		}
-		System.out.println("LaufZeit Prim: " + ((System.currentTimeMillis() - start)/1000));
+		System.out.println("LaufZeit: " + ((System.currentTimeMillis() - start)/1000));
 		System.out.println("Gesamtkantengewicht Prim:" + lengthAll);
 		return lengthAll;
 		

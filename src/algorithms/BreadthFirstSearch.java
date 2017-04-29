@@ -11,7 +11,13 @@ import org.graphstream.graph.Node;
 import exceptions.SourceAndTargetEqualsException;
 
 public class BreadthFirstSearch {
-	public static void getSteps(Graph graph , String source, String target) throws SourceAndTargetEqualsException {
+	private Graph graph;
+
+	public BreadthFirstSearch(Graph graph) {
+		this.graph = graph;
+	}
+
+	public void getSteps(String source, String target) throws SourceAndTargetEqualsException {
 		Node s = graph.getNode(source);
 		Node t = graph.getNode(target);
 		System.out.println("Source: " + s + " Target:" + t);

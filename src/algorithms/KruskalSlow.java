@@ -49,8 +49,7 @@ public class KruskalSlow {
 			}
 		}
 		
-		System.out.println("Laufzeit Kruskal:" +(System.currentTimeMillis() - start)/1000);
-		System.out.println("Gesamtkantengewicht Kruskal:" + minSpannTree);
+		System.out.println((System.currentTimeMillis() - start)/1000);
 		return minSpannTree;
 	}
 }
