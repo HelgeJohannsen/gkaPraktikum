@@ -15,7 +15,9 @@ public class Reader {
 
 	/**
 	 * Die Klasse liest eine Datei ein und erstellt einen FileStream.
-	 * @param path - Der Pfad zu der zu lesenden Datei.
+	 * 
+	 * @param path
+	 *            - Der Pfad zu der zu lesenden Datei.
 	 */
 	public Reader(String path) {
 		this.path = path;

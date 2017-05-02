@@ -24,14 +24,14 @@ public class GraphGenerator {
 	int anzahlKnoten = 20;
 	int anzahlKanten = 40;
 	Boolean connected = true;
-	Boolean isStrict; 
+	Boolean isStrict;
 	Set<String> nodeSet = new HashSet<String>();
 	Set<String> edgeSet = new HashSet<String>();
 	String graphName;
 	Graph graph;
 	Iterator it;
 	LinkedList<String> listeKnoten = new LinkedList<String>();
-	
+
 	public GraphGenerator(int anzahlKnoten, int anzahlKanten, String graphName, Boolean connected, Boolean isStrict) {
 		super();
 		this.anzahlKnoten = anzahlKnoten;
@@ -53,9 +53,10 @@ public class GraphGenerator {
 				l = alphabet.charAt(r.nextInt(alphabetLength));
 				k = alphabet.charAt(r.nextInt(alphabetLength));
 				j = alphabet.charAt(r.nextInt(alphabetLength));
-				
+
 			}
-			String nodeS = Character.toString(n) + Character.toString(m) + Character.toString(l) + Character.toString(k) + Character.toString(j);
+			String nodeS = Character.toString(n) + Character.toString(m) + Character.toString(l) + Character.toString(k)
+					+ Character.toString(j);
 			System.out.println("erstelle Knoten:" + nodeS + " " + (nodeSet.size() + 1));
 			nodeSet.add(nodeS);
 		}

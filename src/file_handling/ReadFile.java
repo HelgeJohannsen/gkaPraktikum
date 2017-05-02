@@ -29,7 +29,8 @@ public class ReadFile {
 	 * Die Klasse wandelt mit Hilfer der Reader Klasse .graph Dateien in Graph
 	 * Objekte um.
 	 * 
-	 * @param reader - Ein Reader-Objekt aus dem der FileStream ausgelesen wird.
+	 * @param reader
+	 *            - Ein Reader-Objekt aus dem der FileStream ausgelesen wird.
 	 */
 	public ReadFile(Reader reader) {
 		fr1 = reader.getFr();
@@ -41,7 +42,6 @@ public class ReadFile {
 		System.out.println("directed = " + isDirected);
 	}
 
-	
 	/**
 	 * Die Methode überprüft, ob der Graph aus der Datei gerichtet oder
 	 * ungerichtet ist. Außerdem wird überprüft, ob die Kanten ein Gewicht haben
@@ -79,8 +79,8 @@ public class ReadFile {
 	public Graph handle(String graphName) throws IOException {
 		Scanner sc = new Scanner(fr2);
 		Graph graph = new MultiGraph(graphName);
-		graph.addAttribute("hasWeight", weight); // wird benötigt im FileWrite 
-		graph.setStrict(isDirected);			// wird benötigt im FileWrite
+		graph.addAttribute("hasWeight", weight); // wird benötigt im FileWrite
+		graph.setStrict(isDirected); // wird benötigt im FileWrite
 		Matcher matcher;
 		Pattern patternToUse;
 		int weightInt = 0;
@@ -104,24 +104,23 @@ public class ReadFile {
 				if (graph.getNode(matcher.group(2)) == null) {
 					graph.addNode(matcher.group(2));
 				}
-				
-				graph.addEdge(matcher.group(1) + matcher.group(2), matcher.group(1), matcher.group(2), graph.isStrict());
-				
 
+				graph.addEdge(matcher.group(1) + matcher.group(2), matcher.group(1), matcher.group(2),
+						graph.isStrict());
 
-							
-				if(weight){
-				//fügt erstmal jede Gewichtung unabhängig vom Datentyp hinzu	
-//				if(weightDouble== null){
-//					weightDouble = 1000;
-//				}
-					if(matcher.group(3).equals("")){
+				if (weight) {
+					// fügt erstmal jede Gewichtung unabhängig vom Datentyp
+					// hinzu
+					// if(weightDouble== null){
+					// weightDouble = 1000;
+					// }
+					if (matcher.group(3).equals("")) {
 						weightInt = 99;
-					}else{
+					} else {
 						weightInt = Integer.parseInt(matcher.group(3).trim());
-					}					
-					
-				graph.getEdge(matcher.group(1) + matcher.group(2)).addAttribute("weight",	weightInt);
+					}
+
+					graph.getEdge(matcher.group(1) + matcher.group(2)).addAttribute("weight", weightInt);
 				}
 			}
 		}

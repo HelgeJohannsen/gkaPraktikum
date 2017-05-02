@@ -9,6 +9,7 @@ import org.graphstream.algorithm.Kruskal;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.graph.implementations.SingleGraph;
 
 import algorithms.BFS;
@@ -67,7 +68,7 @@ public class Main {
 //		Algorithm alg = new Kruskal();
        	
        	
-		gen.display();
+		//gen.display();
 //		fc.writeFile("./src/graphDataOutput/", gen);
 //		Graph genGraph = gra.generate();
 		graphicController.initGraph(gen);
