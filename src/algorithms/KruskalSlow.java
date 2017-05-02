@@ -7,16 +7,18 @@ import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
 
 public class KruskalSlow {
+	
 	public static ArrayList<Edge> sortQueue(Graph graph){
 		ArrayList<Edge> queue = new ArrayList<Edge>();
 		int maxWeight = 0;
+		// Suche das maximale Kantengewicht
 		for (Edge edge : graph.getEachEdge()){
 			if((int)edge.getAttribute("weight") >maxWeight ){
 				maxWeight = (int)edge.getAttribute("weight");
 			}
 		}
 		
-
+		// wir iterieren über das maximale Kantengewicht um die quueue so zu sortieren
 		for(int j=0; j<=maxWeight; j++) {
 		for (Edge edge : graph.getEachEdge()) {
 				if((int) edge.getAttribute("weight") == j) {

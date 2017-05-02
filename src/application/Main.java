@@ -3,7 +3,7 @@ package application;
 import java.io.IOException;
 
 import org.graphstream.algorithm.Algorithm;
-import org.graphstream.algorithm.Dijkstra;
+
 import org.graphstream.algorithm.Dijkstra.Element;
 import org.graphstream.algorithm.Kruskal;
 import org.graphstream.graph.Edge;
@@ -14,6 +14,7 @@ import org.graphstream.graph.implementations.SingleGraph;
 
 import algorithms.BFS;
 import algorithms.BreadthFirstSearch;
+import algorithms.Dijkstra;
 import algorithms.Dijkstra2;
 import algorithms.Kruaskal;
 import algorithms.KruskalSlow;
@@ -39,14 +40,16 @@ public class Main {
 		FileControl fc = new FileControl();
 //		fc.readFile("./src/graphDataInput/" , "graph01");
 //		fc.writeFile("./src/graphDataOutput/");
-		fc.readFile("./src/graphDataOutput/" , "");
+//		fc.readFile("./src/graphDataOutput/Generated1" , "generated1");
 //		Graph gen = fc.genGraph(22222,55555, "generated4", true, false);
-		Graph gen = fc.getGraph();
+		Graph gen = fc.readFile("./src/graphDataOutput/", "generated2");
+		Dijkstra d1= new Dijkstra();
+		d1.calc(gen, gen.getNode("VZE"), gen.getNode("SIP"));
 //		BreadthFirstSearch.getSteps(gen, "v3", "vs");
-		Dijkstra2 d2 = new Dijkstra2(gen, "v3", "v5");
-		d2.init();
-		d2.calc();
-		d2.showWay();
+//		Dijkstra2 d2 = new Dijkstra2(gen, "v3", "v5");
+//		d2.init();
+//		d2.calc();
+//		d2.showWay();
 //      	int kantengewicht = 0;		
 //	 	KruskalSlow.calcSpanningTree(gen);		
 //		Prim.prim(gen, gen.getNode(0));
