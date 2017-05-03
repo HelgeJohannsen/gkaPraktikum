@@ -1,6 +1,6 @@
 package tests;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.MultiGraph;
@@ -65,9 +65,9 @@ public class FileHandlingTest {
 		undirectedWeightGraph.addEdge("CD", "C", "D");
 		// Gewichte hinzufügen
 		undirectedWeightGraph.getEdge("AC").addAttribute("weight", 2);
-		undirectedWeightGraph.getEdge("AC").addAttribute("weight", 3);
-		undirectedWeightGraph.getEdge("AC").addAttribute("weight", 1);
-		undirectedWeightGraph.getEdge("AC").addAttribute("weight", 5);
+		undirectedWeightGraph.getEdge("AD").addAttribute("weight", 3);
+		undirectedWeightGraph.getEdge("BD").addAttribute("weight", 1);
+		undirectedWeightGraph.getEdge("CD").addAttribute("weight", 5);
 
 		directedWeightGraph.addAttribute("hasWeight", true);
 		// Knoten gerichteter Graph mit gewichteten Kanten
@@ -82,9 +82,9 @@ public class FileHandlingTest {
 		directedWeightGraph.addEdge("CD", "C", "D", true);
 		// Gewichte hinzufügen
 		directedWeightGraph.getEdge("AC").addAttribute("weight", 2);
-		directedWeightGraph.getEdge("AC").addAttribute("weight", 3);
-		directedWeightGraph.getEdge("AC").addAttribute("weight", 1);
-		directedWeightGraph.getEdge("AC").addAttribute("weight", 5);
+		directedWeightGraph.getEdge("AD").addAttribute("weight", 3);
+		directedWeightGraph.getEdge("BD").addAttribute("weight", 1);
+		directedWeightGraph.getEdge("CD").addAttribute("weight", 5);
 
 	}
 
@@ -113,7 +113,54 @@ public class FileHandlingTest {
 		
 		//Read Files
 		Graph readGraph1 = controller.readFile("./src/graphDataOutput/", "undirectedGraph");
-		assertTrue(true);
+		Graph readGraph2 = controller.readFile("./src/graphDataOutput/", "directedGraph");
+		Graph readGraph3 = controller.readFile("./src/graphDataOutput/", "undirectedWeightGraph");
+		Graph readGraph4 = controller.readFile("./src/graphDataOutput/", "directedWeightGraph");
+		
+		// Test gerichtet
+		assertFalse(readGraph1.getEdge("AC").isDirected());
+		assertTrue(readGraph2.getEdge("AC").isDirected());
+		assertFalse(readGraph3.getEdge("AC").isDirected());
+		assertTrue(readGraph4.getEdge("AC").isDirected());
+		
+		// Test gewichtet
+		assertFalse(readGraph1.getAttribute("hasWeight"));
+		assertFalse(readGraph2.getAttribute("hasWeight"));
+		assertTrue(readGraph3.getAttribute("hasWeight"));
+		assertTrue(readGraph4.getAttribute("hasWeight"));
+		
+		//Test Knoten und Kanten
+		assertTrue(readGraph1.getNode("A").hasEdgeBetween("C"));
+		assertTrue(readGraph1.getNode("A").hasEdgeBetween("D"));
+		assertTrue(readGraph1.getNode("B").hasEdgeBetween("D"));
+		assertTrue(readGraph1.getNode("C").hasEdgeBetween("D"));
+		
+		assertTrue(readGraph2.getNode("A").hasEdgeBetween("C"));
+		assertTrue(readGraph2.getNode("A").hasEdgeBetween("D"));
+		assertTrue(readGraph2.getNode("B").hasEdgeBetween("D"));
+		assertTrue(readGraph2.getNode("C").hasEdgeBetween("D"));
+		
+		assertTrue(readGraph3.getNode("A").hasEdgeBetween("C"));
+		assertTrue(readGraph3.getNode("A").hasEdgeBetween("D"));
+		assertTrue(readGraph3.getNode("B").hasEdgeBetween("D"));
+		assertTrue(readGraph3.getNode("C").hasEdgeBetween("D"));
+		
+		assertTrue(readGraph4.getNode("A").hasEdgeBetween("C"));
+		assertTrue(readGraph4.getNode("A").hasEdgeBetween("D"));
+		assertTrue(readGraph4.getNode("B").hasEdgeBetween("D"));
+		assertTrue(readGraph4.getNode("C").hasEdgeBetween("D"));
+		
+		// Tets Gewichtungen
+		assertEquals((int) readGraph3.getEdge("AC").getAttribute("weight"), 2);
+		assertEquals((int) readGraph3.getEdge("AD").getAttribute("weight"), 3);
+		assertEquals((int) readGraph3.getEdge("BD").getAttribute("weight"), 1);
+		assertEquals((int) readGraph3.getEdge("CD").getAttribute("weight"), 5);
+		
+		assertEquals((int) readGraph4.getEdge("AC").getAttribute("weight"), 2);
+		assertEquals((int) readGraph4.getEdge("AD").getAttribute("weight"), 3);
+		assertEquals((int) readGraph4.getEdge("BD").getAttribute("weight"), 1);
+		assertEquals((int) readGraph4.getEdge("CD").getAttribute("weight"), 5);
+		
 	}
 
 }

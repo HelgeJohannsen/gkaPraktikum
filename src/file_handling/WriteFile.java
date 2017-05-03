@@ -18,7 +18,7 @@ public class WriteFile {
 		FileWriter fw = new FileWriter(src + graph.toString() + ".graph");
 		BufferedWriter bw = new BufferedWriter(fw);
 
-		if (graph.isStrict()) {
+		if (graph.getEdge(0).isDirected()) {
 			bw.write("#directed\n");
 		}
 		
