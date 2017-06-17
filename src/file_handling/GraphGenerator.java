@@ -25,6 +25,7 @@ public class GraphGenerator {
 	int anzahlKanten = 40;
 	Boolean connected = true;
 	Boolean isStrict;
+	Boolean eulerCicle;
 	Set<String> nodeSet = new HashSet<String>();
 	Set<String> edgeSet = new HashSet<String>();
 	String graphName;
@@ -39,6 +40,7 @@ public class GraphGenerator {
 		this.graphName = graphName;
 		this.connected = connected;
 		this.isStrict = isStrict;
+	//	this.eulerCicle = eulerCircle;
 		this.graph = new MultiGraph(graphName);
 	}
 
@@ -115,4 +117,20 @@ public class GraphGenerator {
 
 	}
 
+	public Graph generateEuler() {
+		createNodes();
+		connectNodes();
+		if (anzahlKanten%2==0) {
+			while(listeKnoten.size() != 0){
+	//			graph.getEachNode()
+			}
+			
+			
+		}
+		
+		
+		
+		return graph;
+
+	}
 }

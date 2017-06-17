@@ -38,8 +38,8 @@ public class ReadFile {
 		patternNoWeight = Pattern.compile("([a-zA-Z0-9öäüÖÄÜ]*),([a-zA-Z0-9öäüÖÄÜ]*)");
 		patternWeight = Pattern.compile("([a-zA-Z0-9öäüÖÄÜ]*),([a-zA-Z0-9öäüÖÄÜ]*) *:: *([0-9]* *);");
 		checkGraph();
-		System.out.println("weight = " + weight);
-		System.out.println("directed = " + isDirected);
+//		System.out.println("weight = " + weight);
+//		System.out.println("directed = " + isDirected);
 	}
 
 	/**

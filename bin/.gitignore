@@ -1,6 +1,7 @@
+/application/
+/exceptions/
 /file_handling/
 /tests/
-/application/
-/graphDataInput/
+/util/
 /algorithms/
 /graphDataOutput/
