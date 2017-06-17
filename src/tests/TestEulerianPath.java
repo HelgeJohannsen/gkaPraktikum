@@ -1,18 +1,12 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
-import org.graphstream.graph.implementations.MultiGraph;
 import org.junit.Test;
-
-import algorithms.BreadthFirstSearch;
 import algorithms.Hierholz;
 import file_handling.FileControl;
 
@@ -31,8 +25,8 @@ public class TestEulerianPath {
 	public void testHierholzer() {
 	// positive Tests	
 		assertEquals(testCircle(eulerKreisPositiv1), true);
-	//	assertEquals(testCircle(eulerKreisPositiv2), true);
-	//	assertEquals(testCircle(HausVomNikolaus), true);
+		assertEquals(testCircle(eulerKreisPositiv2), true);
+		assertEquals(testCircle(HausVomNikolaus), true);
 	// negative Tests	
 		assertEquals(testCircle(eulerKreisNegativ1), false);
 		assertEquals(testCircle(eulerKreisNegativ2), false);
@@ -42,8 +36,8 @@ public class TestEulerianPath {
 	public void testFleury() {
 	// positive Tests	
 		assertEquals(testCircle(eulerKreisPositiv1), true);
-	//	assertEquals(testCircle(eulerKreisPositiv2), true);
-	//	assertEquals(testCircle(HausVomNikolaus), true);
+		assertEquals(testCircle(eulerKreisPositiv2), true);
+		assertEquals(testCircle(HausVomNikolaus), true);
 	// negative Tests	
 		assertEquals(testCircle(eulerKreisNegativ1), false);
 		assertEquals(testCircle(eulerKreisNegativ2), false);
@@ -54,6 +48,8 @@ public class TestEulerianPath {
 	public static boolean testCircle(Graph graph) {
 		 ArrayList<Node> kantenfolge = Hierholz.getPath(graph);
 		 ArrayList<Edge> edgesToVisit = new ArrayList();
+		 
+		 
 		for (Iterator iterator = graph.getEdgeIterator(); iterator.hasNext();) {
 			Edge edgeToAdd = (Edge) iterator.next();
 			edgesToVisit.add(edgeToAdd);
