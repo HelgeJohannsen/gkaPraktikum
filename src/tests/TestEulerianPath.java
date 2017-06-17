@@ -24,29 +24,28 @@ public class TestEulerianPath {
 	@Test
 	public void testHierholzer() {
 	// positive Tests	
-		assertEquals(testCircle(eulerKreisPositiv1), true);
-		assertEquals(testCircle(eulerKreisPositiv2), true);
-		assertEquals(testCircle(HausVomNikolaus), true);
+		assertEquals(testCircle(eulerKreisPositiv1, Hierholz.getPath(eulerKreisPositiv1)), true);
+		assertEquals(testCircle(eulerKreisPositiv2, Hierholz.getPath(eulerKreisPositiv2)), true);
+		assertEquals(testCircle(HausVomNikolaus, Hierholz.getPath(HausVomNikolaus)), true);
 	// negative Tests	
-		assertEquals(testCircle(eulerKreisNegativ1), false);
-		assertEquals(testCircle(eulerKreisNegativ2), false);
+		assertEquals(testCircle(eulerKreisNegativ1, Hierholz.getPath(eulerKreisNegativ1)), true);
+		assertEquals(testCircle(eulerKreisNegativ2, Hierholz.getPath(eulerKreisNegativ2)), true);
 	}
 	
 	@Test	
 	public void testFleury() {
-	// positive Tests	
-		assertEquals(testCircle(eulerKreisPositiv1), true);
-		assertEquals(testCircle(eulerKreisPositiv2), true);
-		assertEquals(testCircle(HausVomNikolaus), true);
+		// positive Tests	
+		assertEquals(testCircle(eulerKreisPositiv1, Fleury.getPath(eulerKreisPositiv1)), true);
+		assertEquals(testCircle(eulerKreisPositiv2, Fleury.getPath(eulerKreisPositiv2)), true);
+		assertEquals(testCircle(HausVomNikolaus, Fleury.getPath(HausVomNikolaus)), true);
 	// negative Tests	
-		assertEquals(testCircle(eulerKreisNegativ1), false);
-		assertEquals(testCircle(eulerKreisNegativ2), false);
+		assertEquals(testCircle(eulerKreisNegativ1, Fleury.getPath(eulerKreisNegativ1)), true);
+		assertEquals(testCircle(eulerKreisNegativ2, Fleury.getPath(eulerKreisNegativ2)), true);
 	}
 	
+
 	
-	
-	public static boolean testCircle(Graph graph) {
-		 ArrayList<Node> kantenfolge = Hierholz.getPath(graph);
+	 static boolean testCircle(Graph graph, ArrayList<Node> kantenfolge) {
 		 ArrayList<Edge> edgesToVisit = new ArrayList();
 		 
 		 
