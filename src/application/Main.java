@@ -43,7 +43,7 @@ import tests.TestEulerianPath;
 
 public class Main {
 	public static void main(String args[]) throws IOException, SourceAndTargetEqualsException {
-		Graph euler = GraphGenerator.generateEuler(5, "euler");
+		Graph euler = GraphGenerator.generateEuler(10, "euler");
 		euler.display();
 
 //		 FileControl fc = new FileControl();

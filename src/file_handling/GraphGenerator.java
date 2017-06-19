@@ -157,13 +157,20 @@ public class GraphGenerator {
 		while (oddNodes.size() != 0) {
 			System.out.println(oddNodes.toString());
 			Node s = oddNodes.get(0);
-			int randomIndex = (int) (Math.random() * oddNodes.size() - 1);
+			int randomIndex = 0;
+			while (randomIndex == 0) {
+				randomIndex = (int) (Math.random() * oddNodes.size() - 1);
+				if (oddNodes.size() == 2) {
+					randomIndex = 1;
+				}
+			}
 			Node t = oddNodes.get(randomIndex);
 			Edge edge = s.getEdgeBetween(t);
 			if (edge == null) {
 				eulerGraph.addEdge(s.toString() + t.toString(), s, t);
 			}
 			oddNodes = getOddNodes(eulerGraph);
+			System.out.println("Anzahl ungerader Knotengrade: " + oddNodes.size());
 		}
 
 		return eulerGraph;
