@@ -3,10 +3,14 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.junit.Test;
+
+import algorithms.Fleury;
 import algorithms.Hierholz;
 import file_handling.FileControl;
 
@@ -45,7 +49,7 @@ public class TestEulerianPath {
 	
 
 	
-	 static boolean testCircle(Graph graph, ArrayList<Node> kantenfolge) {
+	 static boolean testCircle(Graph graph, List<Node> list) {
 		 ArrayList<Edge> edgesToVisit = new ArrayList();
 		 
 		 
@@ -55,7 +59,7 @@ public class TestEulerianPath {
 		}
 
 		Node src = null;
-		for (Iterator iterator = kantenfolge.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
 			Node trg = (Node) iterator.next();
 			if (src != null && trg != null) {
 				Node srcNode = graph.getNode(src.toString());

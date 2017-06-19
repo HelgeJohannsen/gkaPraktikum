@@ -2,9 +2,11 @@ package file_handling;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -40,7 +42,7 @@ public class GraphGenerator {
 		this.graphName = graphName;
 		this.connected = connected;
 		this.isStrict = isStrict;
-	//	this.eulerCicle = eulerCircle;
+		// this.eulerCicle = eulerCircle;
 		this.graph = new MultiGraph(graphName);
 	}
 
@@ -117,20 +119,89 @@ public class GraphGenerator {
 
 	}
 
-	public Graph generateEuler() {
-		createNodes();
-		connectNodes();
-		if (anzahlKanten%2==0) {
-			while(listeKnoten.size() != 0){
-	//			graph.getEachNode()
-			}
-			
-			
-		}
-		
-		
-		
-		return graph;
+	public static Graph generateEuler(int nodesAmount, String eulerGraphName) {
+		// Graph erstellen
+		Graph eulerGraph = new MultiGraph(eulerGraphName);
 
+		Integer nodeName = new Integer(0);
+		eulerGraph.addNode(nodeName.toString());
+		nodeName += 1;
+
+		// Knoten erstellen
+		for (int n = 1; n < nodesAmount; n++) {
+			// Knoten hinzufügen
+			eulerGraph.addNode(nodeName.toString());
+
+			// Knoten an den Graphen anbinden um sicherzustellen, dass der Graph
+			// zusammenhängend ist.
+			List<Node> nodeList = new ArrayList<>(eulerGraph.getNodeSet());
+			int randNodeIndex = (int) (Math.random() * nodeList.size());
+			Node randomNode = nodeList.get(randNodeIndex);
+			// Keine Kante zu sich selbst
+			if (randomNode.equals(eulerGraph.getNode(nodeName))) {
+				while (randomNode.equals(eulerGraph.getNode(nodeName))) {
+					randNodeIndex = (int) (Math.random() * nodeList.size() - 1);
+					randomNode = nodeList.get(randNodeIndex);
+				}
+			}
+			eulerGraph.addEdge(nodeName.toString() + randomNode.toString(), eulerGraph.getNode(nodeName), randomNode);
+
+			// Den Namen für den nächsten Knoten "hochzählen"
+			nodeName += 1;
+		}
+		List<Edge> edgeList = new ArrayList<>(eulerGraph.getEdgeSet());
+		System.out.println(edgeList.toString());
+
+		// so lange Kanten hinzufügen, bis alle Knotengrade gerade sind
+		List<Node> oddNodes = getOddNodes(eulerGraph);
+		while (!(oddNodes.size() == 0 || oddNodes.size() == 2)) {
+			oddNodes = getOddNodes(eulerGraph);
+			System.out.println(oddNodes.toString());
+			Node s = oddNodes.get(1);
+			int randomIndex = (int) (Math.random() * oddNodes.size() - 1);
+			Node t = oddNodes.get(randomIndex);
+			if (!eulerGraph.getEdge(s.toString() + t.toString()).equals(null) || !eulerGraph.getEdge(t.toString() + s.toString()).equals(null)) {
+				eulerGraph.addEdge(s.toString() + t.toString(), s, t);
+			}
+		}
+
+		return eulerGraph;
 	}
+
+	/**
+	 * 
+	 * @param graph
+	 * @return True wenn genau 0 oder 2 ungerade Knotengrade in dem Graphen
+	 *         existieren.
+	 */
+	private static boolean isEulerDegree(Graph graph) {
+		int oddNumberCounter = 0;
+		for (Node node : graph.getNodeSet()) {
+			if (oddNumberCounter > 2) {
+				return false;
+			} else {
+				if (node.getDegree() % 2 != 0) {
+					oddNumberCounter += 1;
+				}
+			}
+		}
+		if (oddNumberCounter == 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	private static List<Node> getOddNodes(Graph graph) {
+		List<Node> oddNodes = new ArrayList<>();
+		for (Node node : graph.getNodeSet()) {
+			System.out.print(node.toString() + ": ");
+			System.out.println(node.getDegree());
+			if (node.getDegree() % 2 != 0) {
+				oddNodes.add(node);
+			}
+		}
+		return oddNodes;
+	}
+
 }

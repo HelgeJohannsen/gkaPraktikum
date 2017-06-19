@@ -21,6 +21,7 @@ import algorithms.BFS;
 import algorithms.BreadthFirstSearch;
 import algorithms.Dijkstra;
 import algorithms.Dijkstra2;
+import algorithms.Fleury;
 import algorithms.Hierholz;
 import algorithms.HierholzerTest;
 import algorithms.Kruaskal;
@@ -42,13 +43,15 @@ import tests.TestEulerianPath;
 
 public class Main {
 	public static void main(String args[]) throws IOException, SourceAndTargetEqualsException {
+		Graph euler = GraphGenerator.generateEuler(5, "euler");
+		euler.display();
 
-		 FileControl fc = new FileControl();
-		//fc.readFile("./src/graphDataInput/" , "graph01");
-		// fc.writeFile("./src/graphDataOutput/");
-		Graph gen = fc.readFile("./src/graphDataOutput/" , "HausVomNikolaus");
-		// Graph gen = fc.genGraph(12,16, "euler1", true, false);
-		  gen.display();
+//		 FileControl fc = new FileControl();
+//		//fc.readFile("./src/graphDataInput/" , "graph01");
+//		// fc.writeFile("./src/graphDataOutput/");
+//		Graph gen = fc.readFile("./src/graphDataOutput/" , "HausVomNikolaus");
+//		// Graph gen = fc.genGraph(12,16, "euler1", true, false);
+//		  gen.display();
 		// fc.writeFile("./src/graphDataOutput/", gen);
 		// Graph gen = fc.readFile("./src/graphDataOutput/", "generated2");
 		// Dijkstra d1= new Dijkstra();

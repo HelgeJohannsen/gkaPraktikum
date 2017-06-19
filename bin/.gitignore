@@ -1,7 +1,4 @@
-/application/
-/exceptions/
-/file_handling/
-/tests/
-/util/
 /algorithms/
-/graphDataOutput/
+/tests/
+/application/
+/file_handling/
