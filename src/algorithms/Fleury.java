@@ -20,18 +20,23 @@ public class Fleury {
 
 		Node v = start;
 		Iterator<Edge> neighbors;
+		// Solange Kanten vorhanden sind
 		while (eulerKreisPositiv2.getEdgeSet().size() > 0) {
+			// Iteriere über alle Kanten 
 			neighbors = v.getEdgeIterator();
 			while (neighbors.hasNext()) {
 				Edge nextEdge = neighbors.next();
 				Node s = nextEdge.getSourceNode();
 				Node t = nextEdge.getTargetNode();
+				// Ist "s--t" eine Brücke ?
 				if (t.getDegree() != 1) {
 					if (!isBridge(eulerKreisPositiv2, nextEdge)) {
 						eulerKreisPositiv2.removeEdge(nextEdge);
-						v = nextEdge.getTargetNode();
+						eulerPath.add(t);
+						v = t;
 						break;
 					}
+					// Die letzte Kante wurde entfernt -> return
 				} else {
 					eulerPath.add(t);
 					return eulerPath;
