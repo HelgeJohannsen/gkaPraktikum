@@ -154,15 +154,16 @@ public class GraphGenerator {
 
 		// so lange Kanten hinzufügen, bis alle Knotengrade gerade sind
 		List<Node> oddNodes = getOddNodes(eulerGraph);
-		while (!(oddNodes.size() == 0 || oddNodes.size() == 2)) {
-			oddNodes = getOddNodes(eulerGraph);
+		while (oddNodes.size() != 0) {
 			System.out.println(oddNodes.toString());
-			Node s = oddNodes.get(1);
+			Node s = oddNodes.get(0);
 			int randomIndex = (int) (Math.random() * oddNodes.size() - 1);
 			Node t = oddNodes.get(randomIndex);
-			if (!eulerGraph.getEdge(s.toString() + t.toString()).equals(null) || !eulerGraph.getEdge(t.toString() + s.toString()).equals(null)) {
+			Edge edge = s.getEdgeBetween(t);
+			if (edge == null) {
 				eulerGraph.addEdge(s.toString() + t.toString(), s, t);
 			}
+			oddNodes = getOddNodes(eulerGraph);
 		}
 
 		return eulerGraph;

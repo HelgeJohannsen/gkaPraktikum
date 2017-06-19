@@ -19,8 +19,9 @@ public class Fleury {
 		eulerPath.add(start);
 
 		Node v = start;
-		Iterator<Edge> neighbors = v.getEdgeIterator();
+		Iterator<Edge> neighbors;
 		while (eulerKreisPositiv2.getEdgeSet().size() > 0) {
+			neighbors = v.getEdgeIterator();
 			while (neighbors.hasNext()) {
 				Edge nextEdge = neighbors.next();
 				Node s = nextEdge.getSourceNode();
